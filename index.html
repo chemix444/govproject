@@ -4,228 +4,355 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blake S. for President | Balakay Party</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0a1f44;
-      --gold:   #f5c518;
-      --red:    #c0392b;
-      --light:  #f4f6fb;
-      --white:  #ffffff;
-      --shadow: 0 8px 32px rgba(10,31,68,0.18);
+      --navy:    #0b1d3a;
+      --blue:    #1c3d6e;
+      --gold:    #e8b612;
+      --gold-light: #fceabb;
+      --red:     #d42a2a;
+      --cream:   #faf8f2;
+      --white:   #ffffff;
     }
 
     body {
-      font-family: 'Georgia', serif;
-      background: var(--light);
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
       color: var(--navy);
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    /* ── Header / Hero ── */
-    header {
-      background: linear-gradient(135deg, var(--navy) 60%, #1a3a6e 100%);
+    /* ── Top accent bar ── */
+    .accent-bar {
+      height: 6px;
+      background: linear-gradient(90deg, var(--red), var(--gold) 50%, var(--red));
+    }
+
+    /* ── Hero section ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 60%, #234b82 100%);
       color: var(--white);
       text-align: center;
-      padding: 60px 20px 50px;
-      position: relative;
+      padding: 70px 24px 60px;
       overflow: hidden;
     }
 
-    header::before {
+    /* star field background */
+    .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 40px,
-        rgba(245,197,24,0.04) 40px,
-        rgba(245,197,24,0.04) 80px
-      );
+      background-image:
+        radial-gradient(1.5px 1.5px at 10% 15%, rgba(255,255,255,0.25) 50%, transparent 50%),
+        radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.18) 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 45% 30%, rgba(255,255,255,0.2) 50%, transparent 50%),
+        radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.15) 50%, transparent 50%),
+        radial-gradient(2px 2px at 80% 20%, rgba(255,255,255,0.22) 50%, transparent 50%),
+        radial-gradient(1px 1px at 90% 55%, rgba(255,255,255,0.17) 50%, transparent 50%),
+        radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,0.13) 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 35% 50%, rgba(255,255,255,0.2) 50%, transparent 50%);
       pointer-events: none;
     }
 
+    /* diagonal stripe accents */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background: var(--cream);
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ── Party label ── */
+    .party-label {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      padding: 6px 24px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
     /* ── Logo placeholder ── */
-    .logo-placeholder {
-      width: 160px;
-      height: 160px;
+    .logo-box {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 32px;
+      border: 3px dashed rgba(232,182,18,0.6);
       border-radius: 50%;
-      border: 4px dashed var(--gold);
-      background: rgba(255,255,255,0.06);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 30px;
-      position: relative;
-      z-index: 1;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(4px);
     }
 
-    .logo-placeholder span {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.05em;
+    .logo-box span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.6;
       text-align: center;
-      line-height: 1.5;
     }
 
     /* ── Candidate name ── */
-    .candidate-name {
-      font-size: clamp(2.8rem, 7vw, 5rem);
-      font-weight: 900;
+    .name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 0.95;
       letter-spacing: 0.04em;
-      line-height: 1;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 6px;
     }
 
-    .candidate-name .highlight {
-      color: var(--gold);
-    }
+    .name .first { color: var(--white); }
+    .name .last  { color: var(--gold); }
 
-    /* ── Office badge ── */
-    .office-badge {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 8px 28px;
-      border: 2px solid var(--gold);
-      border-radius: 40px;
-      font-size: 1.05rem;
-      letter-spacing: 0.18em;
+    .office {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 600;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--gold);
-      position: relative;
-      z-index: 1;
+      color: rgba(255,255,255,0.7);
+      margin-top: 10px;
     }
 
-    /* ── Slogan banner ── */
-    .slogan-banner {
+    /* ── Slogan ribbon ── */
+    .slogan {
       background: var(--gold);
       color: var(--navy);
       text-align: center;
-      padding: 22px 20px;
-      font-size: clamp(1.1rem, 3vw, 1.55rem);
-      font-style: italic;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      box-shadow: 0 4px 16px rgba(245,197,24,0.35);
+      padding: 20px 24px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 20px rgba(232,182,18,0.4);
+    }
+
+    .slogan::before,
+    .slogan::after {
+      content: '\2605';
+      margin: 0 14px;
+      font-size: 0.9em;
+      color: var(--red);
     }
 
     /* ── Info cards ── */
-    main {
-      max-width: 900px;
-      margin: 56px auto;
-      padding: 0 20px 60px;
+    .cards {
+      max-width: 960px;
+      margin: 50px auto 60px;
+      padding: 0 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
     }
 
     .card {
       background: var(--white);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      padding: 36px 28px;
+      border-radius: 14px;
+      padding: 32px 22px 28px;
       text-align: center;
-      border-top: 5px solid var(--navy);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(11,29,58,0.08);
+      border-bottom: 4px solid var(--navy);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(10,31,68,0.22);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 36px rgba(11,29,58,0.15);
     }
 
     .card .icon {
-      font-size: 2.6rem;
-      margin-bottom: 14px;
-      display: block;
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
     }
 
-    .card h2 {
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
+    .card .icon.candidate { background: #e8f0fe; }
+    .card .icon.office    { background: #fce8e8; }
+    .card .icon.slogan-i  { background: #fef6e0; }
+    .card .icon.party-i   { background: #e8feec; }
+
+    .card .label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #8a9ab5;
-      margin-bottom: 10px;
+      color: #8c9ab5;
+      margin-bottom: 8px;
     }
 
-    .card p {
-      font-size: 1.25rem;
+    .card .value {
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--navy);
       line-height: 1.35;
     }
 
-    .card.party { border-top-color: var(--red); }
-    .card.party p { color: var(--red); }
+    .card:nth-child(4) {
+      border-bottom-color: var(--red);
+    }
+
+    .card:nth-child(4) .value {
+      color: var(--red);
+    }
+
+    /* ── Call to action ── */
+    .cta {
+      text-align: center;
+      padding: 0 20px 60px;
+    }
+
+    .cta-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 18px;
+      padding: 44px 32px;
+      color: var(--white);
+      box-shadow: 0 8px 32px rgba(11,29,58,0.2);
+    }
+
+    .cta-box h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+
+    .cta-box p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta-btn:hover {
+      background: var(--gold-light);
+      transform: scale(1.05);
+    }
 
     /* ── Footer ── */
     footer {
       background: var(--navy);
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.45);
       text-align: center;
-      padding: 22px 20px;
-      font-size: 0.85rem;
+      padding: 20px 20px;
+      font-size: 0.8rem;
       letter-spacing: 0.05em;
     }
 
-    footer span { color: var(--gold); font-weight: 700; }
+    footer strong { color: var(--gold); }
   </style>
 </head>
 <body>
 
-  <!-- ════ HERO ════ -->
-  <header>
-    <!-- Logo: swap the div below with an <img> tag when your logo is ready -->
-    <div class="logo-placeholder">
-      <span>Logo<br>Coming<br>Soon</span>
+  <div class="accent-bar"></div>
+
+  <!-- ══════ HERO ══════ -->
+  <section class="hero">
+    <div class="hero-inner">
+
+      <div class="party-label">The Balakay Party</div>
+
+      <!-- Logo: replace this div with an <img src="your-logo.png" alt="Balakay Party Logo" /> when ready -->
+      <div class="logo-box">
+        <span>Your Logo<br>Here</span>
+      </div>
+
+      <h1 class="name">
+        <span class="first">Blake </span><span class="last">S.</span>
+      </h1>
+      <p class="office">For President of the United States</p>
+
     </div>
+  </section>
 
-    <div class="candidate-name">
-      Blake <span class="highlight">S.</span>
-    </div>
+  <!-- ══════ SLOGAN ══════ -->
+  <div class="slogan">Give America a Break, Vote for Blake!</div>
 
-    <div class="office-badge">Candidate for President of the United States</div>
-  </header>
-
-  <!-- ════ SLOGAN ════ -->
-  <div class="slogan-banner">
-    "Give America a Break, Vote for Blake!"
-  </div>
-
-  <!-- ════ INFO CARDS ════ -->
-  <main>
-    <div class="card">
-      <span class="icon">&#128100;</span>
-      <h2>Candidate</h2>
-      <p>Blake S.</p>
-    </div>
-
-    <div class="card">
-      <span class="icon">&#127963;</span>
-      <h2>Office</h2>
-      <p>President of the United States</p>
-    </div>
+  <!-- ══════ INFO CARDS ══════ -->
+  <section class="cards">
 
     <div class="card">
-      <span class="icon">&#128483;</span>
-      <h2>Slogan</h2>
-      <p>"Give America a Break, Vote for Blake!"</p>
+      <div class="icon candidate">&#128100;</div>
+      <div class="label">Candidate</div>
+      <div class="value">Blake S.</div>
     </div>
 
-    <div class="card party">
-      <span class="icon">&#127775;</span>
-      <h2>Party</h2>
-      <p>The Balakay Party</p>
+    <div class="card">
+      <div class="icon office">&#127963;</div>
+      <div class="label">Office</div>
+      <div class="value">President of the United States</div>
     </div>
-  </main>
 
-  <!-- ════ FOOTER ════ -->
+    <div class="card">
+      <div class="icon slogan-i">&#128172;</div>
+      <div class="label">Slogan</div>
+      <div class="value">"Give America a Break, Vote for Blake!"</div>
+    </div>
+
+    <div class="card">
+      <div class="icon party-i">&#11088;</div>
+      <div class="label">Party</div>
+      <div class="value">The Balakay Party</div>
+    </div>
+
+  </section>
+
+  <!-- ══════ CTA ══════ -->
+  <section class="cta">
+    <div class="cta-box">
+      <h2>Join the Movement</h2>
+      <p>Stand with Blake S. and the Balakay Party.</p>
+      <a href="#" class="cta-btn">Get Involved</a>
+    </div>
+  </section>
+
+  <!-- ══════ FOOTER ══════ -->
   <footer>
-    Paid for by the <span>Balakay Party</span> &mdash; Blake S. for President Campaign
+    Paid for by <strong>The Balakay Party</strong> &mdash; Blake S. for President
   </footer>
 
 </body>
